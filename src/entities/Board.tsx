@@ -1,12 +1,18 @@
+import cpp, { PairPoints } from "../utils/cpp";
 import Ball from "./Ball";
 
 export default class Board {
     balls: Ball[];
+    qtd: number;
     row_size: number;
     column_size: number;
+    canvasContext?: CanvasRenderingContext2D;
+    closestBalls?: PairPoints;
+
 
     constructor(qtd: number, row_size: number, column_size: number) {
-        this.balls = new Array(qtd);
+        this.qtd = qtd;
+        this.balls = new Array(this.qtd);
         this.row_size = row_size;
         this.column_size = column_size;
 
@@ -16,8 +22,10 @@ export default class Board {
     }
 
     setContext(canvasContext: CanvasRenderingContext2D) {
+        this.canvasContext = canvasContext;
+
         this.balls.forEach(ball => {
-            ball.setContext(canvasContext)
+            ball.setContext(this.canvasContext)
             ball.draw();
         });
     }
@@ -38,6 +46,20 @@ export default class Board {
 
     touchingVerticallyBorder(posY: number) { return (posY <= 0) || (posY >= this.column_size) }
 
+    drawClosest(color: string): void {
+        this.canvasContext.fillStyle = color;
+        this.canvasContext.beginPath()
+        this.canvasContext.arc(this.closestBalls.pointA.x, this.closestBalls.pointA.y, 7, 0, Math.PI * 2, false);
+        this.canvasContext.closePath()
+        this.canvasContext.fill()
+
+        this.canvasContext.fillStyle = color;
+        this.canvasContext.beginPath()
+        this.canvasContext.arc(this.closestBalls.pointB.x, this.closestBalls.pointB.y, 7, 0, Math.PI * 2, false);
+        this.canvasContext.closePath()
+        this.canvasContext.fill()
+    }
+
     moveBalls(): void {
         this.balls.forEach(ball => {
             const newCoordX = ball.getCoordX() + ball.getDeltaX();
@@ -57,5 +79,15 @@ export default class Board {
             ball.setCoord(newCoordX, newCoordY);
             ball.setDelta(newDeltaX, newDeltaY);
         })
+
+        if (this.closestBalls)
+            this.drawClosest("black");
+        this.closestBalls = cpp(this.balls, this.qtd);
+        this.drawClosest("red");
+        // console.log('resultado:')
+        // console.log('pointA: ' + closestBalls.pointA.x + ', ' + closestBalls.pointA.y)
+        // console.log('pointB: ' + closestBalls.pointB.x + ', ' + closestBalls.pointB.y)
+        // console.log("distance: " + closestBalls.distance)
+
     }
 }

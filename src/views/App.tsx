@@ -4,9 +4,10 @@ import Board from '../entities/Board';
 import './App.css';
 
 const GAME_SPEED_MS = 50;
+const QTD_BALLS = 20;
 const ROW_SIZE = 1024;
 const COL_SIZE = 780;
-const board: Board = new Board(50, ROW_SIZE, COL_SIZE);
+const board: Board = new Board(QTD_BALLS, ROW_SIZE, COL_SIZE);
 let context: CanvasRenderingContext2D;
 
 const App = () => {
@@ -20,13 +21,16 @@ const App = () => {
   }, [])
 
   useEffect(() => {
-    setInterval(() => board.moveBalls(), GAME_SPEED_MS);
+    setInterval(() => {
+      
+      board.moveBalls();
+    }, GAME_SPEED_MS);
   }, []);
 
 
   return (
     <div className="App">
-      <Map ref={canvasRef} width={ROW_SIZE} height={COL_SIZE}/>
+      <Map ref={canvasRef} width={ROW_SIZE} height={COL_SIZE} />
     </div>
   );
 }
