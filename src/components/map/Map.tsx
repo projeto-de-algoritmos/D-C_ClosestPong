@@ -1,15 +1,11 @@
-import React, { FC, useRef, useEffect } from "react";
+import React from "react";
 
-interface MapProps {
-    columns: number;
-    rows: number;
-    ref: any;
-}
+type MapProps = React.HTMLProps<HTMLButtonElement>
 
-const Map =  React.forwardRef<HTMLCanvasElement>((props, ref) => {
+const Map = React.forwardRef<HTMLCanvasElement, MapProps>((props, ref) => {
 
     return (
-        <canvas ref={ref} className="map" width={1024} height={780} style={{backgroundColor: "black"}}>a</canvas>
+        <canvas ref={ref} className="map" width={props.width} height={props.height} style={{ backgroundColor: "black" }} />
     );
 });
 
