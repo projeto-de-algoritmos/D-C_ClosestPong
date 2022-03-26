@@ -1,0 +1,37 @@
+.base {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.options {
+    font-family: Roboto, sans-serif; 
+    padding: 15px;
+    text-indent: inherit;
+}
+
+label {
+    margin-left: 10px;
+}
+
+.button {
+    width: 130px;
+    padding: 10px 30px;
+    font-size: 24px;
+    cursor: pointer;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 7px;
+
+    background-color: #bd5858;
+    color: #bababa;
+
+    transition: all 0.4s;
+}
+
+.button:hover{
+    color: #5e0606;
+    background-color: #df6464;
+}

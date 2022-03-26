@@ -9,7 +9,24 @@
     width: 100vw;
     height: 100vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
     background-color: #BABABA;
+    background-size: cover;
+    overflow-y: auto;
+}
+
+.App #Map {
+  width: fit-content;
+  height: fit-content;
+  max-height: 80%;
+  border: 15px solid transparent;
+  border-image: url('../assets/brickwall.png') 3% round;
+  background-image: url('../assets/mini-brick.png');
+  background-repeat: repeat;
+}
+
+.App #Menu {
+  width: 52%;
+  min-height: 12%;
 }

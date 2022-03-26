@@ -61,6 +61,7 @@ export default class Board {
     }
 
     moveBalls(): void {
+        this.cleanBoard()
         this.balls.forEach(ball => {
             const newCoordX = ball.getCoordX() + ball.getDeltaX();
             const newCoordY = ball.getCoordY() + ball.getDeltaY();
@@ -84,10 +85,21 @@ export default class Board {
             this.drawClosest("black");
         this.closestBalls = cpp(this.balls, this.qtd);
         this.drawClosest("red");
-        // console.log('resultado:')
-        // console.log('pointA: ' + closestBalls.pointA.x + ', ' + closestBalls.pointA.y)
-        // console.log('pointB: ' + closestBalls.pointB.x + ', ' + closestBalls.pointB.y)
-        // console.log("distance: " + closestBalls.distance)
+    }
 
+    cleanBoard(): void {
+        this.canvasContext.fillStyle = "black";
+        this.canvasContext.fillRect(0, 0, this.row_size, this.column_size);
+    }
+
+    changeBallQtd(qtd: number): void {
+        this.cleanBoard()
+        this.balls = new Array(qtd);
+
+        for (var aux = 0; aux < this.balls.length; aux++) {
+            this.balls[aux] = new Ball(this.generateRandomX(), this.generateRandomY(), this.generateRandomDelta(), this.generateRandomDelta());
+        }
+
+        this.setContext(this.canvasContext);
     }
 }

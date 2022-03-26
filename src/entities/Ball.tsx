@@ -63,7 +63,7 @@ export default class Ball {
     }
 
     move(x: number, y: number): void {
-        this.erase()
+        // this.erase()
         this.setCoord(x, y)
         this.draw()
     }
