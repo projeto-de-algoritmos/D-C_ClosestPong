@@ -84,17 +84,6 @@ function closestUtil(arr: Array<Ball>, n: number) {
     var leftSide = closestUtil(arr, mid);
     var rightSide = closestUtil(arr.slice(mid), n - mid);
 
-
-    // console.log('leftside:')
-    // console.log('pointA: ' + leftSide.pointA.x + ', ' + leftSide.pointA.y)
-    // console.log('pointB: ' + leftSide.pointB.x + ', ' + leftSide.pointB.y)
-    // console.log("distance: " + leftSide.distance)
-
-    // console.log('rightside:')
-    // console.log('pointA: ' + rightSide.pointA.x + ', ' + rightSide.pointA.y)
-    // console.log('pointB: ' + rightSide.pointB.x + ', ' + rightSide.pointB.y)
-    // console.log("distance: " + rightSide.distance)
-
     var d: PairPoints = minValue((leftSide), (rightSide));
 
     var strip = [];
@@ -115,5 +104,3 @@ export default function cpp(arr: Array<Ball>, n: number) {
 
     return closestUtil(arr, n)
 }
-
-// var P: Point[] = [new Point(2, 3), new Point(12, 30), new Point(40, 50), new Point(5, 1), new Point(12, 10), new Point(3, 4), new Point(3, 7)];
