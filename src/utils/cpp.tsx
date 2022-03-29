@@ -75,7 +75,6 @@ function stripClosest(arr: Array<Ball>, size: number, d: PairPoints) {
     return min;
 }
 
-// Precisa adaptar a função para passar o ponto do navio para buscar o menor entre os pontos das bombas.
 function closestUtil(arr: Array<Ball>, n: number) {
     if (n <= 3) return bruteForce(arr, n);
 
@@ -96,7 +95,7 @@ function closestUtil(arr: Array<Ball>, n: number) {
     // console.log('pointB: ' + rightSide.pointB.x + ', ' + rightSide.pointB.y)
     // console.log("distance: " + rightSide.distance)
 
-    var d: PairPoints = minValue(leftSide, rightSide);
+    var d: PairPoints = minValue((leftSide), (rightSide));
 
     var strip = [];
     let j = 0;
@@ -114,7 +113,7 @@ function closestUtil(arr: Array<Ball>, n: number) {
 export default function cpp(arr: Array<Ball>, n: number) {
     arr.sort(compareX);
 
-    return closestUtil(arr, n);
+    return closestUtil(arr, n)
 }
 
 // var P: Point[] = [new Point(2, 3), new Point(12, 30), new Point(40, 50), new Point(5, 1), new Point(12, 10), new Point(3, 4), new Point(3, 7)];

@@ -12,7 +12,7 @@ let context: CanvasRenderingContext2D;
 
 const App = () => {
   const [gameSpeedMs, setGameSpeedMs] = React.useState(50);
-  const [qtdBalls, setQtdBalls] = React.useState(20);
+  const [qtdBalls, setQtdBalls] = React.useState(QTD_BALLS);
   const [playGame, setPlayGame] = React.useState(true);
   const canvasRef = React.useRef<HTMLCanvasElement>(null);
 
@@ -23,7 +23,6 @@ const App = () => {
   }, [])
 
   React.useEffect(() => {
-    console.log(playGame);
     const interval = setInterval(() => {
       if(playGame)
         board.moveBalls();
@@ -42,9 +41,9 @@ const App = () => {
         <Map ref={canvasRef} width={ROW_SIZE} height={COL_SIZE} />
       </div>
       <div id='Menu'>
-        <Menu setGameSpeedMs={(val) => setGameSpeedMs(val)}
-          setQtdBalls={(val) => setQtdBalls(val)}
-          setPlayGame={(val) => {setPlayGame(val)}} />
+        <Menu setGameSpeedMs={(val: number) => setGameSpeedMs(val)}
+          setQtdBalls={(val: number) => setQtdBalls(val)}
+          setPlayGame={(val: boolean) => {setPlayGame(val)}} />
       </div>
     </div>
   );

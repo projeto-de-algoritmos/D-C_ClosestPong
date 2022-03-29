@@ -3,7 +3,6 @@ import Ball from "./Ball";
 
 export default class Board {
     balls: Ball[];
-    qtd: number;
     row_size: number;
     column_size: number;
     canvasContext?: CanvasRenderingContext2D;
@@ -11,8 +10,7 @@ export default class Board {
 
 
     constructor(qtd: number, row_size: number, column_size: number) {
-        this.qtd = qtd;
-        this.balls = new Array(this.qtd);
+        this.balls = new Array(qtd);
         this.row_size = row_size;
         this.column_size = column_size;
 
@@ -83,7 +81,7 @@ export default class Board {
 
         if (this.closestBalls)
             this.drawClosest("black");
-        this.closestBalls = cpp(this.balls, this.qtd);
+        this.closestBalls = cpp(this.balls, this.balls.length);
         this.drawClosest("red");
     }
 
